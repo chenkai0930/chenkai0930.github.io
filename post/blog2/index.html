@@ -14,12 +14,16 @@
 <meta name="twitter:title" content="什么是Redis与简单实现"/>
 <meta name="twitter:description" content="Redis Redis 是一种 高效查询的in-memory 数据储存。读取和储存操作很快。可以储存的数据类型包括：
  String Sets Lists Sorted sets Hashes Bit arrays  Redis 把整个数据集保存在内存当中，以一种高效的结构存在。但作为代价，它不能使用querying。比如找出所有大于18岁的用户等等。
-优点  查找和操作就是快  不需要每个操作都跟disk同步   在高速缓存中比 Memcache 更有优势  Redis 可以通过 Memcache 的 failings 学习 可以存储多种类型 允许在更复杂的场景中运用   惊人的性能  缺点  因为不是实时同步，所以一些data可能丢失 不可以querying 当数据特别大的时候，对RAM的消耗会特别高  运用场景  Session Storage Full-page caching Real time statistics Recent posts Scoreboards Pub/Sub (Publish/Subscribe)  安装Redis Redis Syntax 上面有redis的一系列指令和介绍。"/>
+优点  查找和操作就是快  不需要每个操作都跟disk同步   在高速缓存中比 Memcache 更有优势  Redis 可以通过 Memcache 的 failings 学习 可以存储多种类型 允许在更复杂的场景中运用   惊人的性能  缺点  因为不是实时同步，所以一些data可能丢失 不可以querying 当数据特别大的时候，对RAM的消耗会特别高  运用场景  Session Storage Full-page caching Real time statistics Recent posts Scoreboards Pub/Sub (Publish/Subscribe)  安装Redis Redis Syntax 上面有redis的一系列指令和介绍。
+MAC OS 安装 直接打开terminal用brew快捷安装并运行
+ brew install redis redis server  检查redis是否运行： 重新打开一个terminal窗口，输入redis-cli 当给出 PING redis会返回值 PONG"/>
 
     <meta property="og:title" content="什么是Redis与简单实现" />
 <meta property="og:description" content="Redis Redis 是一种 高效查询的in-memory 数据储存。读取和储存操作很快。可以储存的数据类型包括：
  String Sets Lists Sorted sets Hashes Bit arrays  Redis 把整个数据集保存在内存当中，以一种高效的结构存在。但作为代价，它不能使用querying。比如找出所有大于18岁的用户等等。
-优点  查找和操作就是快  不需要每个操作都跟disk同步   在高速缓存中比 Memcache 更有优势  Redis 可以通过 Memcache 的 failings 学习 可以存储多种类型 允许在更复杂的场景中运用   惊人的性能  缺点  因为不是实时同步，所以一些data可能丢失 不可以querying 当数据特别大的时候，对RAM的消耗会特别高  运用场景  Session Storage Full-page caching Real time statistics Recent posts Scoreboards Pub/Sub (Publish/Subscribe)  安装Redis Redis Syntax 上面有redis的一系列指令和介绍。" />
+优点  查找和操作就是快  不需要每个操作都跟disk同步   在高速缓存中比 Memcache 更有优势  Redis 可以通过 Memcache 的 failings 学习 可以存储多种类型 允许在更复杂的场景中运用   惊人的性能  缺点  因为不是实时同步，所以一些data可能丢失 不可以querying 当数据特别大的时候，对RAM的消耗会特别高  运用场景  Session Storage Full-page caching Real time statistics Recent posts Scoreboards Pub/Sub (Publish/Subscribe)  安装Redis Redis Syntax 上面有redis的一系列指令和介绍。
+MAC OS 安装 直接打开terminal用brew快捷安装并运行
+ brew install redis redis server  检查redis是否运行： 重新打开一个terminal窗口，输入redis-cli 当给出 PING redis会返回值 PONG" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://chenkai0930.github.io/post/blog2/" />
 <meta property="article:published_time" content="2020-06-13T22:32:30-04:00" />
@@ -54,7 +58,7 @@
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          1 min read
+          2 min read
         </div></div>
     </header>
     <div class="post-content">
@@ -102,6 +106,145 @@
 </ul>
 <h2 id="安装redis">安装Redis</h2>
 <p><a href="http://io/commands">Redis Syntax</a> 上面有redis的一系列指令和介绍。</p>
+<p>MAC OS 安装
+直接打开terminal用brew快捷安装并运行</p>
+<pre><code>  brew install redis
+
+  redis server
+</code></pre>
+<p>检查redis是否运行： 重新打开一个terminal窗口，输入redis-cli
+当给出 PING  redis会返回值 PONG</p>
+<h2 id="几种常用的command">几种常用的command</h2>
+<p>redis比较基础和常用的方法就是<a href="https://redis.io/commands/set">set</a>和<a href="https://redis.io/commands/get">get</a></p>
+<pre><code>  SET myName &quot;Kai Chen&quot;
+  SET AnotherKey &quot;This will expire in 5 mintues&quot; EX 300
+
+  GET myName
+  GET AnotherKey
+</code></pre>
+<p>GET 和 SET function是可以一起使用的：</p>
+<pre><code>  INCR mycounter
+  GETSET mycounter &quot;0&quot;
+  GET mycounter
+</code></pre>
+<p>EXISTS 可以检测Key是否存在 如果存在，返回1，不存在返回0。 可以同时检测多个KEY</p>
+<pre><code>  EXISTS myName                         return 1
+  EXISTS notExists                      return 0
+  EXISTS mycounter myName               return 2
+</code></pre>
+<p>MULTI 方法可以在同一行指令中对多个key value值进行操作</p>
+<pre><code>  &gt; MULTI
+  OK
+  &gt; MSET MultiSet1 &quot;Hello&quot; MultiSet2 &quot;From the other one&quot;
+  QUEUED
+  &gt; EXEC
+  1) OK
+  &gt; MGET MultiSet1 MultiSet2
+  1) &quot;Hello&quot;
+  2) &quot;From the other one&quot;
+</code></pre>
+<p>HSET 可以把key和value 以hash的方式储存</p>
+<p>EXAMPLE：</p>
+<pre><code>  &gt;HSET user username &quot;chenkai&quot; firstName &quot;Kai&quot; lastName &quot;Chen&quot;
+  (integer) 3
+  &gt; HGET user firstName
+  &quot;Kai&quot;
+
+
+  &gt; HGETALL user
+  1) &quot;username&quot;
+  2) &quot;chenkai&quot;
+  3) &quot;firstName&quot;
+  4) &quot;Kai&quot;
+  5) &quot;lastName&quot;
+  6) &quot;Chen&quot;
+  &gt; HKEYS user
+  1) &quot;username&quot;
+  2) &quot;firstName&quot;
+  3) &quot;lastName&quot;
+</code></pre>
+<p>hash方法还有包括 HEXISTS， HINCRBY 等等 和之前提到的很相似，只不过对象是hash</p>
+<h2 id="redis-的场景运用">Redis 的场景运用</h2>
+<h4 id="session-storage">Session Storage</h4>
+<ul>
+<li>什么是session
+<ul>
+<li>终端用户和服务器中间的间隔，用来临时储存数据和保持在requests之中</li>
+</ul>
+</li>
+<li>Redis 的帮助
+<ul>
+<li>因为你可以储存任意数据，像hash和JSON string，可以储存所有类别的数据关于用户的，并且可以用(middleware)在request中去读取数据</li>
+<li>redis允许可以储存entries当out of the server&rsquo;s memory，并且可以很容易的处理过期</li>
+</ul>
+</li>
+<li>Implementing
+<ul>
+<li>track用户最简单的方法之一就是给用户一个cookie with UUID，然后这个ID结合着某些相关的数据
+<ul>
+<li>经常是在服务端的静态内存中实现的</li>
+<li>或者在数据库的query中实现的</li>
+</ul>
+</li>
+<li>Sessions 通常是代价高的
+<ul>
+<li>如果把数据放在web server的内存中，很有可能会很缓慢当有多个session都是进行时</li>
+<li>如果把数据放在database中，读取和更新的操作通常可能会很慢</li>
+</ul>
+</li>
+<li>Redis对session来说，是一个完美的选择
+<ul>
+<li>都会expire</li>
+<li>以内存为基础的快速检索和更新</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>如果有多个web server。静态内存是不可靠的。database是长期储存，但是对读取和更改不是很友善。session对长期储存的意义不大，所以即使session丢掉了，也不是个大问题。</p>
+<ul>
+<li>决定key共享给用户</li>
+<li>储存数据在redis</li>
+<li>设置expire时间</li>
+<li>当每次更新session object时，也要更新entry的exipre时间</li>
+</ul>
+<p>我们有两个储存选项，hash和JSON string 来储存用户。把session注入express也是很简单的：</p>
+<ul>
+<li>在views被创建前，加一个middleware</li>
+<li>检查session是否在内存中存在，如果存在，使用它；反之，存一个session进去。</li>
+<li>把associated data提取出来就可以了</li>
+</ul>
+<p>redis跟传统session storage的优势：</p>
+<ul>
+<li>可以有多个redis server作为一个集群来储存大量的数据和信息</li>
+<li>快，便捷</li>
+<li>can access from many locations atomically</li>
+</ul>
+<h4 id="full-page-caching">Full Page Caching</h4>
+<p>通常来说，作为一个缓存功能，让redis的加载时间会大幅度增加；而pull内容和信息从redis中的速度会特别快，比每次都要重新渲染一个网站要快很多。
+redis可以设置以expire时间，这样就不会让网页一直在缓存中
+因为可以储存很多内容，多个页面。所以可以通过存某个特定的用户界面，来缓存不同的用户界面通过同一个页面。</p>
+<ul>
+<li>使用的场景
+<ul>
+<li>静态的主页</li>
+<li>text很多的post。比如评论，只有某些部分会不同</li>
+<li>一些list只在某个特定频率下更新。比如每周更新</li>
+</ul>
+</li>
+</ul>
+<p>可以用 <a href="https://www.npmjs.com/package/express-redis-cache">express-redis-cache module</a> 来轻松的缓存内容。这个 module 可以让 configure routes 自动获取缓存结果。</p>
+<ul>
+<li>一些设计细节
+<ul>
+<li>储存个人entry给每个用户</li>
+<li>某些页面不想被缓存</li>
+<li>这些缓存的页面expire的时间</li>
+<li>要决定那些页面要一直被缓存，那些是选择型缓存</li>
+</ul>
+</li>
+</ul>
+<p>必须把可缓存内容和不可缓存的内容进行区分。</p>
 
     </div>
     <div class="post-footer">

@@ -19,7 +19,9 @@
       <guid>https://chenkai0930.github.io/post/blog2/</guid>
       <description>Redis Redis 是一种 高效查询的in-memory 数据储存。读取和储存操作很快。可以储存的数据类型包括：
  String Sets Lists Sorted sets Hashes Bit arrays  Redis 把整个数据集保存在内存当中，以一种高效的结构存在。但作为代价，它不能使用querying。比如找出所有大于18岁的用户等等。
-优点  查找和操作就是快  不需要每个操作都跟disk同步   在高速缓存中比 Memcache 更有优势  Redis 可以通过 Memcache 的 failings 学习 可以存储多种类型 允许在更复杂的场景中运用   惊人的性能  缺点  因为不是实时同步，所以一些data可能丢失 不可以querying 当数据特别大的时候，对RAM的消耗会特别高  运用场景  Session Storage Full-page caching Real time statistics Recent posts Scoreboards Pub/Sub (Publish/Subscribe)  安装Redis Redis Syntax 上面有redis的一系列指令和介绍。</description>
+优点  查找和操作就是快  不需要每个操作都跟disk同步   在高速缓存中比 Memcache 更有优势  Redis 可以通过 Memcache 的 failings 学习 可以存储多种类型 允许在更复杂的场景中运用   惊人的性能  缺点  因为不是实时同步，所以一些data可能丢失 不可以querying 当数据特别大的时候，对RAM的消耗会特别高  运用场景  Session Storage Full-page caching Real time statistics Recent posts Scoreboards Pub/Sub (Publish/Subscribe)  安装Redis Redis Syntax 上面有redis的一系列指令和介绍。
+MAC OS 安装 直接打开terminal用brew快捷安装并运行
+ brew install redis redis server  检查redis是否运行： 重新打开一个terminal窗口，输入redis-cli 当给出 PING redis会返回值 PONG</description>
     </item>
     
     <item>
