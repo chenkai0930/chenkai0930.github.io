@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>如何用hugo和GitHub来搭建个人博客 // Kai Chen&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.72.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Kai Chen" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://chenkai0930.github.io/css/main.min.366e0ee61030653c4f8925f9bd4a9db5b3c23b09a6fddf2bccb02e2426ecde43.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何用hugo和GitHub来搭建个人博客"/>
+<meta name="twitter:description" content="Step 1. 安装hugo Hugo 版本 找到对应的系统和你需要的版本下载
+Hugo官网上也有一些安装的教程Install Hugo
+我自己是用brew工具直接安装的，打开terminal 输入
+brew install hugo  Step 2. 创建第一个博客项目 等hugo安装成功后，在terminal中定位到你准备安置项目的根目录，直接使用创建一个新的site
+hugo new site myBlog  在目标根目录会创建一个myBlog文件夹
+Step 3. 设置hugo主题 Hugo的官网有很多的主题模版，里面不只有blog的模版。可选择的种类特别多 比如我目前使用的这个主题 m10c就是从这个网站上下载下来的。 可以直接用git拷贝到你的目录中
+git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c  Step 4. 启动个人博客 切换到博客的根目录，在terminal中输入 指令
+hugo server -t m10c --buildDrafts  然后在终端里会显示本地服务器的地址，复制下来，打开浏览器复制链接进去，就可以看到你的博客啦。
+Step 5. 写第一篇博客 切回项目的根目录，输入指令
+hugo new post/blog.md  然后hugo会在 content/post 中自动生成markdown文件，直接用编译器打开，在md文件的下下面写的文章内容就好了。很简单。 hugo 的 Fast Render Mode 可以在你写的同时，就对网站进行了更新。不需要rebuild
+Step 6. 配置远程服务器 我这里直接用了github的远程服务器。这个其实很随意，我选择github是因为完全免费，而且也可以熟悉一些git操作练习。
+进入[github]网站，创建新的repository。 注意这里repository name一定要写你的github昵称加上."/>
+
+    <meta property="og:title" content="如何用hugo和GitHub来搭建个人博客" />
+<meta property="og:description" content="Step 1. 安装hugo Hugo 版本 找到对应的系统和你需要的版本下载
+Hugo官网上也有一些安装的教程Install Hugo
+我自己是用brew工具直接安装的，打开terminal 输入
+brew install hugo  Step 2. 创建第一个博客项目 等hugo安装成功后，在terminal中定位到你准备安置项目的根目录，直接使用创建一个新的site
+hugo new site myBlog  在目标根目录会创建一个myBlog文件夹
+Step 3. 设置hugo主题 Hugo的官网有很多的主题模版，里面不只有blog的模版。可选择的种类特别多 比如我目前使用的这个主题 m10c就是从这个网站上下载下来的。 可以直接用git拷贝到你的目录中
+git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c  Step 4. 启动个人博客 切换到博客的根目录，在terminal中输入 指令
+hugo server -t m10c --buildDrafts  然后在终端里会显示本地服务器的地址，复制下来，打开浏览器复制链接进去，就可以看到你的博客啦。
+Step 5. 写第一篇博客 切回项目的根目录，输入指令
+hugo new post/blog.md  然后hugo会在 content/post 中自动生成markdown文件，直接用编译器打开，在md文件的下下面写的文章内容就好了。很简单。 hugo 的 Fast Render Mode 可以在你写的同时，就对网站进行了更新。不需要rebuild
+Step 6. 配置远程服务器 我这里直接用了github的远程服务器。这个其实很随意，我选择github是因为完全免费，而且也可以熟悉一些git操作练习。
+进入[github]网站，创建新的repository。 注意这里repository name一定要写你的github昵称加上." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chenkai0930.github.io/post/blog/" />
+<meta property="article:published_time" content="2020-06-13T21:26:00-04:00" />
+<meta property="article:modified_time" content="2020-06-13T21:26:00-04:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://chenkai0930.github.io/"><img class="app-header-avatar" src="/profile.png" alt="Kai Chen" /></a>
+      <h1>Kai Chen&#39;s Blog</h1>
+      <p>Stevens Institude of Technology      BE: Computer Engineering 2019    MS: Computer Science 2021 </p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">如何用hugo和GitHub来搭建个人博客</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 13, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <h2 id="step-1-安装hugo">Step 1. 安装hugo</h2>
+<p><a href="https://github.com/spf13/hugo/releases">Hugo 版本</a> 找到对应的系统和你需要的版本下载</p>
+<p>Hugo官网上也有一些安装的教程<a href="https://gohugo.io/getting-started/installing/">Install Hugo</a></p>
+<p>我自己是用brew工具直接安装的，打开terminal 输入</p>
+<pre><code>brew install hugo
+</code></pre>
+<h2 id="step-2-创建第一个博客项目">Step 2. 创建第一个博客项目</h2>
+<p>等hugo安装成功后，在terminal中定位到你准备安置项目的根目录，直接使用创建一个新的site</p>
+<pre><code>hugo new site myBlog
+</code></pre>
+<p>在目标根目录会创建一个myBlog文件夹</p>
+<h2 id="step-3-设置hugo主题">Step 3. 设置hugo主题</h2>
+<p>Hugo的官网有很多的<a href="https://themes.gohugo.io/">主题</a>模版，里面不只有blog的模版。可选择的种类特别多
+比如我目前使用的这个主题 <a href="https://themes.gohugo.io/hugo-theme-m10c/">m10c</a>就是从这个网站上下载下来的。
+可以直接用git拷贝到你的目录中</p>
+<pre><code>git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+</code></pre>
+<h2 id="step-4-启动个人博客">Step 4. 启动个人博客</h2>
+<p>切换到博客的根目录，在terminal中输入 指令</p>
+<pre><code>hugo server -t m10c --buildDrafts
+</code></pre>
+<p>然后在终端里会显示本地服务器的地址，复制下来，打开浏览器复制链接进去，就可以看到你的博客啦。</p>
+<h2 id="step-5-写第一篇博客">Step 5. 写第一篇博客</h2>
+<p>切回项目的根目录，输入指令</p>
+<pre><code>hugo new post/blog.md
+</code></pre>
+<p>然后hugo会在 content/post 中自动生成markdown文件，直接用编译器打开，在md文件的下下面写的文章内容就好了。很简单。 hugo 的 Fast Render Mode 可以在你写的同时，就对网站进行了更新。不需要rebuild</p>
+<h2 id="step-6-配置远程服务器">Step 6. 配置远程服务器</h2>
+<p>我这里直接用了github的远程服务器。这个其实很随意，我选择github是因为完全免费，而且也可以熟悉一些git操作练习。</p>
+<p>进入[github]网站，创建新的repository。 注意这里repository name一定要写你的github昵称加上.github.io  比如username： aabbcc123   你的repository name 就应该为 aabbcc123.github.io</p>
+<p>接下里就需要把你的本地文件都上传到github了。 github现在有桌面版，我之前有过，感觉很可以。界面什么的也很简洁，git的基本功能都是有的。完全就不需要学习git的那些指令了</p>
+<p>首先要回到根目录，build你的网站，之前的那个算是test mode。并没有生成public文件夹。</p>
+<p>输入指令</p>
+<pre><code>hugo --theme=m10c --baseUrl=&quot;https://aabbcc123.github.io/&quot; --buildDrafts
+</code></pre>
+<p>用git指令来操作的方式如下</p>
+<pre><code>git init
+git add .
+git commit -m &quot;first commit&quot;
+git remote add origin https://github.com/aabbcc123/aabbcc123.git
+git push -u origin master</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
