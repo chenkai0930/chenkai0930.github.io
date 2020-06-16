@@ -245,7 +245,54 @@ redis可以设置以expire时间，这样就不会让网页一直在缓存中
 </li>
 </ul>
 <p>必须把可缓存内容和不可缓存的内容进行区分。</p>
+<h3 id="小练习">小练习</h3>
+<p>每次访问api/people/：id 时，将该用户的信息用redis保存。再次访问时直接从redis提取信息，而并不是在从数据集里提取。</p>
+<p>api/people/history 里存在访问过的用户信息</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">getById</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">async</span> (<span style="color:#a6e22e">id</span>) =&gt; {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise(<span style="color:#a6e22e">async</span> (<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
 
+        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">async</span> () =&gt; {
+            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">user</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+                <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">id</span> <span style="color:#f92672">==</span> Number(<span style="color:#a6e22e">id</span>)){
+                    <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>];
+                }
+            }
+            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">user</span>){
+                <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">user</span>);
+            }
+            <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">reject</span>({
+                    <span style="color:#a6e22e">error</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;user not found&#34;</span>
+                })
+            }
+        }, <span style="color:#ae81ff">5000</span>);
+    });
+};
+
+
+<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/people/history&#39;</span>, <span style="color:#a6e22e">async</span>(<span style="color:#a6e22e">req</span>,<span style="color:#a6e22e">res</span>) =&gt; {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">items</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">lrangeAsync</span>(<span style="color:#e6db74">&#34;Visitors&#34;</span>, <span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">19</span>)).<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>);
+    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">items</span>);
+});
+
+<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/people/:id&#39;</span>, <span style="color:#a6e22e">async</span>(<span style="color:#a6e22e">req</span>,<span style="color:#a6e22e">res</span>) =&gt; {
+<span style="color:#a6e22e">isIdExist</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">existsAsync</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">id</span>);
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isIdExist</span> <span style="color:#f92672">===</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userFromRedis</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">hgetallAsync</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">id</span>)
+        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">lpushAsync</span>(<span style="color:#e6db74">&#34;Visitors&#34;</span>, <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">userFromRedis</span>));
+        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">userFromRedis</span>);
+    }<span style="color:#66d9ef">else</span>{
+        <span style="color:#66d9ef">try</span>{
+            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">getById</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">id</span>);
+            <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">lpushAsync</span>(<span style="color:#e6db74">&#34;Visitors&#34;</span>, <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">user</span>));
+            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">user</span>);
+        }<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span>){
+            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">error</span>);
+        }
+    }
+})
+</code></pre></div>
     </div>
     <div class="post-footer">
       

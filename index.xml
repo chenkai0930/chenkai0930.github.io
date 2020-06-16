@@ -6,10 +6,22 @@
     <description>Recent content on Kai Chen&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2020 22:32:30 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 15:52:47 -0400</lastBuildDate>
     
 	<atom:link href="https://chenkai0930.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浅克隆和深克隆</title>
+      <link>https://chenkai0930.github.io/post/clone/</link>
+      <pubDate>Tue, 16 Jun 2020 15:52:47 -0400</pubDate>
+      
+      <guid>https://chenkai0930.github.io/post/clone/</guid>
+      <description>浅克隆和深克隆 总结了几种深克隆和浅克隆的方法。
+概念 浅克隆： 基本类型为值传递，但对象为引用传递。
+深克隆： 所有元素或属性均完全克隆，并跟原来的引用完全独立，互不影响。
+let obj ={ a:100, b: [10,20,30], c: { x: 10 }, d: /^d+$/ }; //浅克隆，对obj2.c.x 进行修改，obj中的数也会收到影响 let obj2 = {}; for (let key in obj) { if (!obj.hasOwnProperty(key)) break; obj2[key]=obj[key]; } //浅克隆的另一种方法 let obj2 = { ...obj } //深克隆 let obj2=JSON.parse(JSON.stringify(obj)); //但是stringify处理正则，函数，日期会出问题  //deepClone recursion function deepClone(obj){ //coner case  if(obj === null) return null; if(typeof obj !==&amp;#34;object&amp;#34;) return obj; if(obj instanceof RegExp) { return new RegExp(obj); } if(obj instanceof Date) { return new Date(obj); } let newObj = new obj.</description>
+    </item>
     
     <item>
       <title>什么是Redis与简单实现</title>
@@ -42,18 +54,6 @@ Step 5. 写第一篇博客 切回项目的根目录，输入指令
 hugo new post/blog.md  然后hugo会在 content/post 中自动生成markdown文件，直接用编译器打开，在md文件的下下面写的文章内容就好了。很简单。 hugo 的 Fast Render Mode 可以在你写的同时，就对网站进行了更新。不需要rebuild
 Step 6. 配置远程服务器 我这里直接用了github的远程服务器。这个其实很随意，我选择github是因为完全免费，而且也可以熟悉一些git操作练习。
 进入[github]网站，创建新的repository。 注意这里repository name一定要写你的github昵称加上.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://chenkai0930.github.io/post/deepclone/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://chenkai0930.github.io/post/deepclone/</guid>
-      <description>浅克隆和深克隆 总结了几种深克隆和浅克隆的方法。
-概念 浅克隆： 基本类型为值传递，但对象为引用传递。
-深克隆： 所有元素或属性均完全克隆，并跟原来的引用完全独立，互不影响。
-let obj ={ a:100, b: [10,20,30], c: { x: 10 }, d: /^d+$/ }; //浅克隆，对obj2.c.x 进行修改，obj中的数也会收到影响 let obj2 = {}; for (let key in obj) { if (!obj.hasOwnProperty(key)) break; obj2[key]=obj[key]; } //浅克隆的另一种方法 let obj2 = { ...obj } //深克隆 let obj2=JSON.parse(JSON.stringify(obj)); //但是stringify处理正则，函数，日期会出问题  //deepClone recursion function deepClone(obj){ //coner case  if(obj === null) return null; if(typeof obj !==&amp;#34;object&amp;#34;) return obj; if(obj instanceof RegExp) { return new RegExp(obj); } if(obj instanceof Date) { return new Date(obj); } let newObj = new obj.</description>
     </item>
     
   </channel>
