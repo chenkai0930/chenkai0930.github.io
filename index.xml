@@ -44,5 +44,17 @@ Step 6. 配置远程服务器 我这里直接用了github的远程服务器。�
 进入[github]网站，创建新的repository。 注意这里repository name一定要写你的github昵称加上.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://chenkai0930.github.io/post/deepclone/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://chenkai0930.github.io/post/deepclone/</guid>
+      <description>浅克隆和深克隆 总结了几种深克隆和浅克隆的方法。
+概念 浅克隆： 基本类型为值传递，但对象为引用传递。
+深克隆： 所有元素或属性均完全克隆，并跟原来的引用完全独立，互不影响。
+let obj ={ a:100, b: [10,20,30], c: { x: 10 }, d: /^d+$/ }; //浅克隆，对obj2.c.x 进行修改，obj中的数也会收到影响 let obj2 = {}; for (let key in obj) { if (!obj.hasOwnProperty(key)) break; obj2[key]=obj[key]; } //浅克隆的另一种方法 let obj2 = { ...obj } //深克隆 let obj2=JSON.parse(JSON.stringify(obj)); //但是stringify处理正则，函数，日期会出问题  //deepClone recursion function deepClone(obj){ //coner case  if(obj === null) return null; if(typeof obj !==&amp;#34;object&amp;#34;) return obj; if(obj instanceof RegExp) { return new RegExp(obj); } if(obj instanceof Date) { return new Date(obj); } let newObj = new obj.</description>
+    </item>
+    
   </channel>
 </rss>
