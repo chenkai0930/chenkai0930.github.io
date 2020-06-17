@@ -6,10 +6,27 @@
     <description>Recent content on Kai Chen&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 15:52:47 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 16:15:46 -0400</lastBuildDate>
     
 	<atom:link href="https://chenkai0930.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React入门（1）- 介绍，安装</title>
+      <link>https://chenkai0930.github.io/post/react1/</link>
+      <pubDate>Tue, 16 Jun 2020 16:15:46 -0400</pubDate>
+      
+      <guid>https://chenkai0930.github.io/post/react1/</guid>
+      <description>介绍 React 模块化：把可复用的一些代码，抽离成一个个模块，便于项目的开发和维护。
+组件化：把一些可复用的UI元素，抽离为组件。
+在移动app开发方面，react结合react-native，可以无缝迁移到移动app的开发。
+几个核心概念 虚拟Dom（Virtual Document Object Model）   DOM的本质： 浏览器中，用js对象来表示页面上的元素，提供了操作DOM的API。
+  react中的虚拟DOM：在框架中，用JS对象来模拟页面上的DOM和DOM嵌套。
+  为什么？ 为了实现页面中，高效更新。按需更新。
+ 获取新旧两个DOM树，然后对DOM树中的元素一一对比。元素改变时，更新。这样的操作减少了渲染的个数。  假如要用js模拟以下的代码
+&amp;lt;div id=&amp;quot;mydiv&amp;quot; title=&amp;quot;mytitle&amp;quot;&amp;gt;myContent&amp;lt;/div&amp;gt;
+var div = { tagName: &amp;#39;div&amp;#39;, attrs: { id: &amp;#39;mydiv&amp;#39;, title: &amp;#39;mytitle&amp;#39; }, childrens: [ &amp;#39;mycontent&amp;#39; ] }   Diff算法  Tree diff: 新旧两个DOM树，逐层对比。 component diff: 在进行Tree Diff时，每一层中，组件的对比。如果对比，前后两个组件类型相同，则暂时认为此组件不需要被更新。 如果不同，移除旧的组件，创新新的组件并加到页面上。 element diff: 在组件对比的时候，如果组件类型相同，则需要对比其元素的对比。  Webpack   在项目跟目录中创建dist 和src 文件夹。src 目录下创建 index.html</description>
+    </item>
     
     <item>
       <title>浅克隆和深克隆</title>
