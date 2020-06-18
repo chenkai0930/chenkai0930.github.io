@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Kai Chen&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 16:15:46 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 10:40:23 -0400</lastBuildDate>
     
 	<atom:link href="https://chenkai0930.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React (2)</title>
+      <link>https://chenkai0930.github.io/post/react2/</link>
+      <pubDate>Thu, 18 Jun 2020 10:40:23 -0400</pubDate>
+      
+      <guid>https://chenkai0930.github.io/post/react2/</guid>
+      <description>Keys的作用 对字节点进行递归 在默认条件下，当递归遍历两个DOM节点的子元素，如果遇到不同的元素时，会对其进行更改。如果在子元素的末端添加新元素，变化的成本就比较低。React 文档 介绍了为什么要使用key。
+在末端插入，react会从第一个开始匹配，发现两个元素一样。跳到下一个元素进行匹配。直到最后，插入第三个元素
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 在列表的头部插入，从第一个元素开始，发现不匹配，进行修改。但实际中，两个元素是 相同的，但位置发生了改变。
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; key 解决了上面的问题 &amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;2015&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2016&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;2014&amp;#34;&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2015&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2016&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 当子元素拥有key时，react使用key来匹配原有树上的子元素已经新的树上的子元素。让其变得高效.
+设置key的方案很简单，如下所示 &amp;lt;li key={item.id}&amp;gt;{item.name}&amp;lt;/li&amp;gt; JSX的语法 在JSX语法中，class 要用 className来代替。 label for 标签需要要 label htmlFor来代替。
+创建第一个组件 import React from &amp;#39;react&amp;#39; import ReactDOM from &amp;#39;react-dom&amp;#39; function Hello(){ return &amp;lt;div&amp;gt;Hello World&amp;lt;/div&amp;gt; //返回一个虚拟DOM } ReactDOM.</description>
+    </item>
     
     <item>
       <title>React入门（1）- 介绍，安装</title>
